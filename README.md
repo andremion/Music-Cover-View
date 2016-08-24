@@ -1,6 +1,9 @@
+[![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
+![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
+![compileSdkVersion 24](https://img.shields.io/badge/compileSdkVersion-24-yellow.svg?style=true)
 # Music Cover View
 
-A [ImageView](https://developer.android.com/reference/android/widget/ImageView.html) that 'morphs' into a circle shape and can rotates. Useful to be used as album cover in Music apps.
+A Subclass of [ImageView](https://developer.android.com/reference/android/widget/ImageView.html) that 'morphs' into a circle shape and can rotates. Useful to be used as album cover in Music apps.
 
 ![Sample](https://raw.githubusercontent.com/andremion/Music-Cover-View/master/art/sample.gif)
 
@@ -54,7 +57,9 @@ or in your `pom.xml` if you are using Maven
 <attr name="trackColor" format="color"/>
 ```
 
-### License
+See more at the [sample](https://github.com/andremion/Music-Cover-View/tree/master/sample)
+
+## License
 
     Copyright 2016 André Mion
 
