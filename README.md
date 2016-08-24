@@ -1,8 +1,58 @@
 # Music Cover View
 
-A rectangle ImageView that 'morphs' into a LP and rotates. Useful to be used as album cover in Music apps.
+A [ImageView](https://developer.android.com/reference/android/widget/ImageView.html) that 'morphs' into a circle shape and can rotates. Useful to be used as album cover in Music apps.
 
 ![Sample](https://raw.githubusercontent.com/andremion/Music-Cover-View/master/art/sample.gif)
+
+It's used by this [Music Player](https://github.com/andremion/Music-Player) prototype.
+
+![Music Player](https://raw.githubusercontent.com/andremion/Music-Player/master/art/music_player_code.gif)
+
+## Installation
+
+Include the library in your `build.gradle`
+
+```groovy
+dependencies{
+    compile 'com.github.andremion:musiccoverview:1.0.0'
+}
+```
+
+or in your `pom.xml` if you are using Maven
+
+```xml
+<dependency>
+  <groupId>com.github.andremion</groupId>
+  <artifactId>musiccoverview</artifactId>
+  <version>1.0.0</version>
+  <type>aar</type>
+</dependency>
+```
+
+## Usage
+
+```xml
+<com.andremion.music.MusicCoverView
+        android:id="@+id/cover"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/cover_height"
+        android:src="@drawable/album_cover"/>
+```
+
+###Custom attributes
+
+1. The shape of the View
+```xml
+<attr name="shape" format="enum">
+    <enum name="rectangle" value="0"/>
+    <enum name="circle" value="1"/>
+</attr>
+```
+    
+2. The color of the tracks when the shape is circle
+```xml
+<attr name="trackColor" format="color"/>
+```
 
 ### License
 
