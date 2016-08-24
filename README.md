@@ -1,6 +1,8 @@
 # Music Cover View
 
-A useful View to be used as album cover in Music apps.
+A rectangle ImageView that 'morphs' into a LP and rotates. Useful to be used as album cover in Music apps.
+
+![Sample](https://raw.githubusercontent.com/andremion/Music-Cover-View/master/art/sample.gif)
 
 ### License
 
