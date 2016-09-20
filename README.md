@@ -45,7 +45,7 @@ or in your `pom.xml` if you are using Maven
 
 ###Custom attributes
 
-1. The shape of the View
+- The shape of the View
 ```xml
 <attr name="shape" format="enum">
     <enum name="rectangle" value="0"/>
@@ -53,7 +53,7 @@ or in your `pom.xml` if you are using Maven
 </attr>
 ```
     
-2. The color of the tracks when the shape is circle
+- The color of the tracks when the shape is circle
 ```xml
 <attr name="trackColor" format="color"/>
 ```
