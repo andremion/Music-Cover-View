@@ -1,7 +1,11 @@
-[![Android Arsenal Music-Cover-View](https://img.shields.io/badge/Android%20Arsenal-Music--Cover--View-green.svg?style=true)](https://android-arsenal.com/details/1/4218)
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
 ![compileSdkVersion 24](https://img.shields.io/badge/compileSdkVersion-24-yellow.svg?style=true)
+![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/musiccoverview.svg)
+
+[![Android Arsenal Music-Cover-View](https://img.shields.io/badge/Android%20Arsenal-Music--Cover--View-green.svg?style=true)](https://android-arsenal.com/details/1/4218)
+[![MaterialUp Music-Cover-View](https://img.shields.io/badge/MaterialUp-Music--Cover--View-blue.svg?style=true)](https://www.uplabs.com/posts/music-cover-view)
+
 # Music Cover View
 
 A Subclass of [ImageView](https://developer.android.com/reference/android/widget/ImageView.html) that 'morphs' into a circle shape and can rotates. Useful to be used as album cover in Music apps.
