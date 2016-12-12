@@ -91,6 +91,17 @@ public class MusicCoverView extends ImageView implements Animatable {
     private Callbacks mCallbacks;
     private int mShape;
 
+    @IntDef({SHAPE_CIRCLE, SHAPE_RECTANGLE})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface Shape {
+    }
+
+    public interface Callbacks {
+        void onMorphEnd(MusicCoverView coverView);
+
+        void onRotateEnd(MusicCoverView coverView);
+    }
+
     public MusicCoverView(Context context) {
         this(context, null, 0);
     }
@@ -102,7 +113,7 @@ public class MusicCoverView extends ImageView implements Animatable {
     public MusicCoverView(Context context, AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
-        // TODO: Canvas.clipPath works wrong when running with hardware acceleration on Android N
+        // Canvas.clipPath works wrong when running with hardware acceleration on Android N
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
             setLayerType(View.LAYER_TYPE_HARDWARE, null);
         }
@@ -198,10 +209,18 @@ public class MusicCoverView extends ImageView implements Animatable {
         mCallbacks = callbacks;
     }
 
+    /**
+     * Return the current shape
+     */
     public int getShape() {
         return mShape;
     }
 
+    /**
+     * Set which shape should be drawn by this {@link MusicCoverView}
+     *
+     * @param shape The shape as {@link #SHAPE_CIRCLE} or {@link #SHAPE_RECTANGLE}
+     */
     public void setShape(@Shape int shape) {
         if (shape != mShape) {
             mShape = shape;
@@ -213,6 +232,11 @@ public class MusicCoverView extends ImageView implements Animatable {
         }
     }
 
+    /**
+     * Set the color of the music tracks
+     *
+     * @param trackColor The color int
+     */
     public void setTrackColor(@ColorInt int trackColor) {
         if (trackColor != getTrackColor()) {
             int alpha = mShape == SHAPE_CIRCLE ? ALPHA_OPAQUE : ALPHA_TRANSPARENT;
@@ -223,6 +247,9 @@ public class MusicCoverView extends ImageView implements Animatable {
         }
     }
 
+    /**
+     * Return the current color of the tracks
+     */
     public int getTrackColor() {
         return mTrackPaint.getColor();
     }
@@ -320,6 +347,9 @@ public class MusicCoverView extends ImageView implements Animatable {
         return insets;
     }
 
+    /**
+     * Starts the transition morph to rect or circle, depending the current shape.
+     */
     public void morph() {
         if (SHAPE_CIRCLE == mShape) {
             morphToRect();
@@ -344,6 +374,9 @@ public class MusicCoverView extends ImageView implements Animatable {
         setScaleType(ScaleType.CENTER_CROP);
     }
 
+    /**
+     * Start the rotate animation
+     */
     @Override
     public void start() {
         if (SHAPE_RECTANGLE == mShape) { // Only start rotate when shape is a circle
@@ -354,6 +387,9 @@ public class MusicCoverView extends ImageView implements Animatable {
         }
     }
 
+    /**
+     * Stop the rotate animation
+     */
     @Override
     public void stop() {
         if (mStartRotateAnimator.isRunning()) {
@@ -361,20 +397,12 @@ public class MusicCoverView extends ImageView implements Animatable {
         }
     }
 
+    /**
+     * Return if the rotate animation is running
+     */
     @Override
     public boolean isRunning() {
         return mStartRotateAnimator.isRunning() || mEndRotateAnimator.isRunning() || mIsMorphing;
-    }
-
-    @IntDef({SHAPE_CIRCLE, SHAPE_RECTANGLE})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Shape {
-    }
-
-    public interface Callbacks {
-        void onMorphEnd(MusicCoverView coverView);
-
-        void onRotateEnd(MusicCoverView coverView);
     }
 
     private static class MorphTransition extends TransitionSet {
@@ -383,6 +411,29 @@ public class MusicCoverView extends ImageView implements Animatable {
             addTransition(new MusicCoverViewTransition(shape));
             addTransition(new ChangeImageTransform());
             addTransition(new ChangeTransform());
+        }
+    }
+
+    private static class TransitionAdapter implements Transition.TransitionListener {
+
+        @Override
+        public void onTransitionStart(Transition transition) {
+        }
+
+        @Override
+        public void onTransitionEnd(Transition transition) {
+        }
+
+        @Override
+        public void onTransitionCancel(Transition transition) {
+        }
+
+        @Override
+        public void onTransitionPause(Transition transition) {
+        }
+
+        @Override
+        public void onTransitionResume(Transition transition) {
         }
     }
 
@@ -455,29 +506,6 @@ public class MusicCoverView extends ImageView implements Animatable {
                 return new SavedState[size];
             }
         });
-    }
-
-    private static class TransitionAdapter implements Transition.TransitionListener {
-
-        @Override
-        public void onTransitionStart(Transition transition) {
-        }
-
-        @Override
-        public void onTransitionEnd(Transition transition) {
-        }
-
-        @Override
-        public void onTransitionCancel(Transition transition) {
-        }
-
-        @Override
-        public void onTransitionPause(Transition transition) {
-        }
-
-        @Override
-        public void onTransitionResume(Transition transition) {
-        }
     }
 
 }
