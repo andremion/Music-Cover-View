@@ -2,14 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion project.ext.compileSdkVersion
-    buildToolsVersion project.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.andremion.music.sample"
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0.0"
+        versionCode = VERSION_CODE
+        versionName = VERSION_NAME
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {

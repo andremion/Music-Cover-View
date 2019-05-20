@@ -34,14 +34,14 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.IntDef;
 import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
+import android.support.transition.ChangeImageTransform;
+import android.support.transition.ChangeTransform;
+import android.support.transition.Transition;
+import android.support.transition.TransitionManager;
+import android.support.transition.TransitionSet;
 import android.support.v4.os.ParcelableCompat;
 import android.support.v4.os.ParcelableCompatCreatorCallbacks;
 import android.support.v4.view.AbsSavedState;
-import android.transition.ChangeImageTransform;
-import android.transition.ChangeTransform;
-import android.transition.Transition;
-import android.transition.TransitionManager;
-import android.transition.TransitionSet;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +82,6 @@ public class MusicCoverView extends ImageView implements Animatable {
     private int mTrackAlpha;
 
     private final Path mClipPath = new Path();
-    private final Path mRectPath = new Path();
     private final Path mTrackPath = new Path();
 
     private boolean mIsMorphing;
@@ -329,9 +328,6 @@ public class MusicCoverView extends ImageView implements Animatable {
         for (int i = 3; i < trackCount; i++) {
             mTrackPath.addCircle(centerX, centerY, trackRadius * (i / (float) trackCount), Path.Direction.CW);
         }
-
-        mRectPath.reset();
-        mRectPath.addRect(0, 0, w, h, Path.Direction.CW);
     }
 
     @Override
